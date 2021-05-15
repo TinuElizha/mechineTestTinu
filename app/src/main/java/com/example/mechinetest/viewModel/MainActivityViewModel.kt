@@ -24,9 +24,6 @@ class MainActivityViewModel: ViewModel() {
     lateinit var retroService: RetroService
     var liveDataresult: MovieModel? = null
 
-
-
-
     init {
         retroService = RetroInstance.getRetroInstance().create(RetroService::class.java)
     }
