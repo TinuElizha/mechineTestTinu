@@ -26,7 +26,6 @@ class MainActivityViewModel: ViewModel() {
     init {
         retroService = RetroInstance.getRetroInstance().create(RetroService::class.java)
     }
-
     @RequiresApi(Build.VERSION_CODES.M)
     fun getListData(context: Context): Flow<PagingData<Result>> {
         var  isNetwork =isOnline(context)
