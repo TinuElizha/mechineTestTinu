@@ -1,4 +1,4 @@
-package com.example.mechinetest
+package com.example.mechinetest.viewModel
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -6,18 +6,17 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.example.mechinetest.MoviePagingSource
 import com.example.mechinetest.model.MovieModel
 import com.example.mechinetest.network.Result
 import com.example.mechinetest.network.RetroInstance
 import com.example.mechinetest.network.RetroService
-import com.example.mechinetest.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 
 class MainActivityViewModel: ViewModel() {
@@ -36,7 +35,7 @@ class MainActivityViewModel: ViewModel() {
     fun getListData(context: Context): Flow<PagingData<Result>> {
         var  isNetwork =isOnline(context)
         return Pager (config = PagingConfig(pageSize = 19, maxSize = 100),
-        pagingSourceFactory = {MoviePagingSource(retroService,context,isNetwork)}).flow.cachedIn(viewModelScope)
+        pagingSourceFactory = { MoviePagingSource(retroService,context,isNetwork) }).flow.cachedIn(viewModelScope)
     }
 
 
