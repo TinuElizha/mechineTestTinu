@@ -32,8 +32,6 @@ class MainActivityViewModel: ViewModel() {
         return Pager (config = PagingConfig(pageSize = 19, maxSize = 100),
         pagingSourceFactory = { MoviePagingSource(retroService,context,isNetwork) }).flow.cachedIn(viewModelScope)
     }
-
-
     @RequiresApi(Build.VERSION_CODES.M)
     fun isOnline(context: Context): Boolean {
         val connectivityManager =
